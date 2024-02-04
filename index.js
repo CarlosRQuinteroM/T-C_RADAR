@@ -1,9 +1,10 @@
 console.clear();
-import express from "express";
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser'
-import findTermsLink from "./src/controllers/linkController.js";
-import formLink from "./src/views/formLink.js";
+const express = require('express');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const findTermsLink = require('./src/controllers/linkController.js');
+const formLink = require('./src/views/formLink.js');
+
 
 
 const expressApp = express();

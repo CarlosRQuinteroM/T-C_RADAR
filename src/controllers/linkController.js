@@ -1,8 +1,9 @@
-import puppeteer from "puppeteer";
-import data from "../../data.json" assert { type: "json" };
-import { capitalizeFirtsLetter } from "../utils/utils.js";
+const puppeteer = require('puppeteer');
+const data = require('../../data.json');
+const capitalizeFirtsLetter = require('../utils/utils.js');
 
-export default async function findTermsLink(url) {
+
+async function findTermsLink(url) {
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
 
@@ -42,3 +43,5 @@ export default async function findTermsLink(url) {
         await browser.close();
     }
 }
+
+module.exports = findTermsLink;

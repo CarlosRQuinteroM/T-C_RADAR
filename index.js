@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser'
 import findTermsLink from "./src/controllers/linkController.js";
+import formLink from "./src/views/formLink.js";
 
 
 const expressApp = express();
@@ -12,13 +13,7 @@ const PORT = process.env.PORT
 expressApp.use(bodyParser.urlencoded({ extended: true }));
 
 expressApp.get('/', (req, res) => {
-    res.send(`
-    <form action="/findtermslink" method="post">
-    <label for="url">Enter URL:</label>
-    <input type="text" id="url" name="url" required/>
-    <button type="submit">Find Terms Link</button>
-    </form>
-    `);
+    res.send(formLink);
 })
 
 expressApp.post('/findtermslink', async (req, res) => {

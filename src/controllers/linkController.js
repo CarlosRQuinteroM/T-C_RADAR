@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import data from "../../data.json" assert { type: "json" };
+import { capitalizeFirtsLetter } from "../utils/utils.js";
 
 export default async function findTermsLink(url) {
     const browser = await puppeteer.launch({ headless: "new" });
@@ -19,7 +20,15 @@ export default async function findTermsLink(url) {
                 text: a.textContent.trim(),
             }))
         );
-        console.log("pageLinks: ", pageLinks)
+
+        const searchJsonForLanguage = data[pageLanguage.toUpperCase()] || [];
+        const capitalizedLanguageToFind = searchJsonForLanguage.map(capitalizeFirtsLetter)
+
+        const pageTargetLink = pageLinks.find((link) => {
+            return capitalizedLanguageToFind.some((str) => link.text.includes(str));
+        })
+
+        console.log("pageTargetLink", pageTargetLink)
 
 
     } catch (error) {

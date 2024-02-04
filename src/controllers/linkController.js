@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import data from "../../data.json" assert { type: "json" };
 
 export default async function findTermsLink(url) {
     const browser = await puppeteer.launch({ headless: "new" });
@@ -11,10 +12,21 @@ export default async function findTermsLink(url) {
         const pageLanguage = await page.evaluate(() => {
             return document.documentElement.lang || navigator.language;
         })
-        console.log("pageLanguage: ", pageLanguage)
+
+        const pageLinks = await page.$$eval("a", (anchors) =>
+            anchors.map((a) => ({
+                href: a.href,
+                text: a.textContent.trim(),
+            }))
+        );
+        console.log("pageLinks: ", pageLinks)
+
+
     } catch (error) {
+
         console.log(error)
     } finally {
+
         await browser.close();
     }
 }

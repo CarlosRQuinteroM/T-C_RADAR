@@ -28,9 +28,13 @@ expressApp.post('/findtermslink', async (req, res) => {
     const { url } = req.body;
     try {
         const termsLink = await findTermsLink(url);
-        res.send(termsLink ? `Link found: ${termsLink}` : "No Link found")
+        res.send(
+            termsLink
+                ? `<li><a href=${termsLink} target="_blank">Link found: ${termsLink}</li></a>`
+                : "No link found."
+        );
     } catch (error) {
-        console(error)
+        console.log(error)
         res.status(500).send("Server error")
     }
 

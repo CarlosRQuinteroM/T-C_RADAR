@@ -8,8 +8,6 @@ export default async function findTermsLink(url) {
 
     try {
         await page.goto(url)
-        console.log("await page.goto: ", url)
-
         const pageLanguage = await page.evaluate(() => {
             return document.documentElement.lang || navigator.language;
         })
@@ -28,14 +26,19 @@ export default async function findTermsLink(url) {
             return capitalizedLanguageToFind.some((str) => link.text.includes(str));
         })
 
-        console.log("pageTargetLink", pageTargetLink)
+
+        if (pageTargetLink) {
+            console.log("pageTargetLink", pageTargetLink.href)
+            return pageTargetLink.href;
+        } else {
+            console.log(error);
+            return `A terms and conditions link was not found on the selected page.<a>${url}</a>`
+        }
 
 
     } catch (error) {
-
         console.log(error)
     } finally {
-
         await browser.close();
     }
 }

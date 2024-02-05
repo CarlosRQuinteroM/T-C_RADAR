@@ -21,20 +21,19 @@ describe('getPageLanguaje Funcionality', () => {
             await browser.close();
 
         }
-    })
+    }, 10000)
 
     it('should handle errors when getting the page language', async () => {
         const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
-
         const url = 'https://invalid-url.com';
-        const pageLanguage = await getPageLanguage(page, url);
 
         try {
+            const pageLanguage = await getPageLanguage(page, url);
             expect(pageLanguage).toBeUndefined();
         } finally {
             await browser.close();
         }
 
-    })
+    }, 10000)
 })

@@ -26,8 +26,7 @@ async function findTermsLink(url) {
         })
 
 
-        if (pageTargetLink) {
-            console.log("pageTargetLink", pageTargetLink.href)
+        if (pageTargetLink){
             return pageTargetLink.href;
         } else {
             console.log(error);

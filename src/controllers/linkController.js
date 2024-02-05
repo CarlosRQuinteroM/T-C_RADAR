@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const data = require('../../data.json');
 const capitalizeFirtsLetter = require('../utils/utils.js');
+const getPageLanguage = require('../utils/pageLanguageUtils.js');
 
 
 async function findTermsLink(url) {
@@ -8,10 +9,7 @@ async function findTermsLink(url) {
     const page = await browser.newPage();
 
     try {
-        await page.goto(url)
-        const pageLanguage = await page.evaluate(() => {
-            return document.documentElement.lang || navigator.language;
-        })
+        const pageLanguage = await getPageLanguage(page, url);
 
         const pageLinks = await page.$$eval("a", (anchors) =>
             anchors.map((a) => ({

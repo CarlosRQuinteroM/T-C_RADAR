@@ -7,7 +7,7 @@ describe('getPageLanguaje Funcionality', () => {
 
     it('should get the page language', async () => {
 
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         const url = "https://es-es.facebook.com/"
 
@@ -24,7 +24,7 @@ describe('getPageLanguaje Funcionality', () => {
     }, 10000)
 
     it('should handle errors when getting the page language', async () => {
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: "new" });
         const page = await browser.newPage();
         const url = 'https://invalid-url.com';
 

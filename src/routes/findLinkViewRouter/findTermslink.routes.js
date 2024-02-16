@@ -1,5 +1,5 @@
 const express = require("express");
-const findTermsLink = require("../../controllers/linkController");
+const findTermsLink = require("../../controllers/termsLink.controller");
 
 const findTermslinkRouter = express.Router();
 

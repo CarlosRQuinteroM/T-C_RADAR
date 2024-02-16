@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const data = require('../../data.json');
-const capitalizeFirtsLetter = require('../utils/utils.js');
-const getPageLanguage = require('../utils/pageLanguageUtils.js');
+const capitalizeFirtsLetter = require('../utils/capitalizeFirstLetters.js');
+const getPageLanguage = require('../utils/pageLanguage.js');
 
 
 async function findTermsLink(url) {

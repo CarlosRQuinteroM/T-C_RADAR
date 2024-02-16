@@ -2,9 +2,9 @@ console.clear();
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const formExpressAppRouter = require('./src/routes/home/formLinkRouter.js');
-const downloadTermsPdfRouter = require('./src/routes/downloadPdfTermsRouter/downloadTermsPdfRouter.js');
-const findTermsLinkRouter = require('./src/routes/findLinkViewRouter/findTermslinkRouter.js');
+const formExpressAppRouter = require('./routes/home/formLink.routes.js');
+const downloadTermsPdfRouter = require('./routes/downloadPdfTermsRouter/downloadTermsPdf.routes.js');
+const findTermsLinkRouter= require('./routes/findLinkViewRouter/findTermslink.routes.js')
 
 
 

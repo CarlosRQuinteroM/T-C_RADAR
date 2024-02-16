@@ -1,6 +1,6 @@
 const express = require("express");
-const downloadPdf = require("../../utils/dowloadPdf");
-const findTermsLink = require("../../controllers/linkController");
+const downloadPdf = require("../../utils/PDFDownload");
+const findTermsLink = require("../../controllers/termsLink.controller");
 
 const downloadTermsPdfRouter = express.Router();
 

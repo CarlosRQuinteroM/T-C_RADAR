@@ -1,5 +1,6 @@
 const express = require('express');
-const findTermsLink = require('../../controllers/linkController');
+const findTermsLink = require('../../controllers/linkController.js');
+const urlOdrFinder = require('../../utils/urlOdrFinder.js');
 
 const findTermsLinkRouter = express.Router();
 
@@ -10,9 +11,15 @@ findTermsLinkRouter.post('/', async (req, res) => {
     const { url } = req.body;
     try {
         const termsLink = await findTermsLink(url);
+        const odrConstumerUrl = await urlOdrFinder(termsLink)
+
+
         res.send(
-            termsLink
-                ? `<li><a href=${termsLink} target="_blank">Link found: ${termsLink}</li></a>`
+            termsLink && odrConstumerUrl
+                ? `
+                <li><a href=${termsLink} target="_blank">Link found: ${termsLink}</li></a>
+                <p>${odrConstumerUrl}</p>
+                `
                 : "No link found."
         );
     } catch (error) {
